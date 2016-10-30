@@ -59,7 +59,20 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 //@Disabled
 public class SensorTest extends LinearOpMode {
 
+    //trying to merge the drive code and the sensor code
+  final static double MOTOR_POWER = 0.2;
+  DcMotor motorRB, motorRF, motorLB, motorLF;
   ColorSensor colorSensor;    // Hardware Device Object
+  public void init() {
+
+    motorRB = hardwareMap.dcMotor.get("motor_1");
+    motorRF = hardwareMap.dcMotor.get("motor_2");
+    motorLB = hardwareMap.dcMotor.get("motor_3");
+    motorLF = hardwareMap.dcMotor.get("motor_4");
+    motorLB.setDirection(DcMotor.Direction.REVERSE);
+    motorLF.setDirection(DcMotor.Direction.REVERSE);
+
+  }
 
 
   @Override
@@ -130,7 +143,19 @@ public class SensorTest extends LinearOpMode {
       });
 
       telemetry.update();
+
+
+        //trying to start drive train
+        if (this.time <= 6) {
+            motorRB.setPower(MOTOR_POWER);
+            motorRF.setPower(MOTOR_POWER);
+            motorLB.setPower(MOTOR_POWER);
+            motorLF.setPower(MOTOR_POWER);
+        }
+
+
         idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
     }
+    public void stop() {}
   }
 }

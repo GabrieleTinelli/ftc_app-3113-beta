@@ -60,6 +60,17 @@ public class SensorMRColor extends LinearOpMode {
 
   ColorSensor colorSensor;    // Hardware Device Object
 
+  public void init() {
+
+    motorRB = hardwareMap.dcMotor.get("motor_1");
+    motorRF = hardwareMap.dcMotor.get("motor_2");
+    motorLB = hardwareMap.dcMotor.get("motor_3");
+    motorLF = hardwareMap.dcMotor.get("motor_4");
+    motorLB.setDirection(DcMotor.Direction.REVERSE);
+    motorLF.setDirection(DcMotor.Direction.REVERSE);
+
+  }
+
 
   @Override
   public void runOpMode() throws InterruptedException {
